@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Stasi versus NSA</title>
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="leaflet/leaflet.css" />
+	<link rel="stylesheet" href="leaflet/leaflet.label.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="leaflet/leaflet.ie.css" /><![endif]-->
+	<style type="text/css">
+		html {
+			height: 100%;
+		}
+		body {
+			margin: 0;
+			height: 100%;
+		}
+
+		#map {
+			width: 100%;
+			height: 100%;
+		}
+		
+		.leaflet-label {
+			border:none;
+			font-weight: normal;
+			line-height: 16px;
+			font-size: 12px;
+		}
+
+		.leaflet-label {
+			border: 1px solid rgba(0,0,0,0.1);
+			box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+			font-weight: normal;
+			line-height: 16px;
+			font-size: 12px;
+			padding: 5px 8px;
+		}
+
+		.leaflet-label h3 {
+			font-weight: bold;
+			line-height: 16px;
+			font-size: 15px;
+			margin: 0 0 5px 0;
+			padding: 0;
+		}
+
+		.leaflet-label.left {
+			right: 5px;
+			text-align: right;
+		}
+
+		.leaflet-label.right {
+			left: 5px;
+		}
+
+		.leaflet-label:before {
+			border: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="map"></div>
+
+	<script src="leaflet/leaflet.js"></script>
+	<script src="leaflet/leaflet.label.js"></script>
+	<script>
+
+		var map = L.map('map').setView([52.52, 13.4005], 16);
+
+		L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
+			maxZoom: 18,
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+			zoomAnimation: true
+		}).addTo(map);
+
+/*
+		L.marker([51.5, -0.09]).addTo(map)
+			.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+
+		L.circle([51.508, -0.11], 500, {
+			color: 'red',
+			fillColor: '#f03',
+			fillOpacity: 0.5
+		}).addTo(map).bindPopup("I am a circle.");
+*/
+		L.polygon([
+			[52.520390625, 13.4006510416667],
+			[52.520390625, 13.3993489583333],
+			[52.519609375, 13.3993489583333],
+			[52.519609375, 13.4006510416667]
+		], {
+			color: '#000',
+			weight: 2,
+			fillColor: '#000',
+			fillOpacity: 0.6
+		}).addTo(map);
+
+		L.polygon([
+			[52.520390625, 58.9474800182201],
+			[52.520390625, 13.401],
+			[16.0832066104239, 13.401],
+			[16.0832066104239, 58.9474800182201]
+		], {
+			color: '#000',
+			weight: 2,
+			fillColor: '#000',
+			fillOpacity: 0.6
+		}).addTo(map);
+		
+		var labelStasi = new L.Label({offset:[0,5], className:'left', clickable:true});
+		labelStasi.setContent('<h3>Fläche der Stasi-Aktenschränke</h3>200 Aktenkilometer entsprechen<br>etwa 48\'000 Aktenschränken,<br>die etwa 0,019 km&sup2; Platz benötigen.');
+		labelStasi.setLatLng([52.520390625, 13.3993489583333]);
+		map.showLabel(labelStasi);
+		
+		labelStasi.on('click', function () {
+			map.setView([52.52, 13.4005], 16);
+		})
+
+		var labelNSA = new L.Label({offset:[0,5], className:'right', clickable:true});
+		labelNSA.setContent('<h3>Fläche der NSA-Aktenschränke</h3>5 Zettabytes entsprechen ausgedruckt<br>etwa 42 Billionen Aktenschränken,<br>die etwa 17 Mio. km&sup2; Platz benötigen.<br><br><u>Rauszoomen starten</u>');
+		labelNSA.setLatLng([52.520390625, 13.401]);
+		map.showLabel(labelNSA);
+
+		var interval = false;
+		labelNSA.on('click', function () {
+			zoomStep();
+			interval = setInterval(zoomStep, 1000);
+		});
+
+		var zoomStep = function () {
+			if (map.getZoom() > 3) {
+				map.zoomOut(1, {animate:true});
+			} else {
+				stopZoom();
+			}
+		}
+
+		var stopZoom = function () {
+			if (interval) {
+				clearInterval(interval);
+				interval = false;
+			}
+		}
+
+		map.on('mousedown', stopZoom);
+
+		map.on('zoomend', function () {
+			if (map.getZoom() < 16) {
+				labelStasi.setContent('<h3>Fläche der Stasi-Aktenschränke</h3>200 Aktenkilometer entsprechen<br>etwa 48\'000 Aktenschränken,<br>die etwa 0,019 km&sup2; Platz benötigen.<br><br><u>Reinzoomen</u>');
+			}
+		})
+
+		/*
+		var popup = L.popup();
+
+		function onMapClick(e) {
+			popup
+				.setLatLng(e.latlng)
+				.setContent("You clicked the map at " + e.latlng.toString())
+				.openOn(map);
+		}
+
+		map.on('click', onMapClick);
+		*/
+
+	</script>
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-38022006-8']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+</body>
+</html>

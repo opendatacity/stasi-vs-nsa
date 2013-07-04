@@ -1,0 +1,177 @@
+body {
+	
+	background: #F5F5F5;
+	
+}
+
+	#container {
+		
+		display: block;
+		position: relative;
+		margin: 0px auto;
+		box-shadow: 0px 0px 40px -20px rgba(0,0,0,0.4);
+		width: 950px; 
+		background: #fff;
+		padding: 30px;
+		
+	}
+
+		.social {
+			height: 35px;
+		}
+
+
+		
+		#activate {
+
+			padding: 20px 0px 0px;
+			border-top: 1px dotted #eee;
+			margin-top: 20px;
+
+		} 
+		
+			#activate .col {
+				
+				display: block;
+				position: relative;
+				float: left;
+				width: 270px;
+				margin: 0px;
+				padding: 0px;
+				
+			}
+			
+				#activate .col+.col {
+					
+					margin-left: 25px;
+					
+				}
+				
+		#branding {
+			
+			padding: 20px 0px 0px;
+			border-top: 1px dotted #eee;
+			margin-top: 20px;
+			
+		}
+		
+			#license {
+				padding: 20px 10px 20px 100px;
+				background: url(../img/cc-by.png) 10px center no-repeat;
+				font-size: 0.8em;
+				line-height: 1.1em;
+				background-color: #f5f5f5;
+				border-radius: 4px;
+				border: 1px solid #E3E3E3;
+				box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset
+				
+			}
+			
+			#creator {
+				
+				display: block;
+				position: relative;
+				float: left;
+				margin: 0px;
+				padding: 0px;
+				min-height: 60px;
+				line-height: 60px;
+				width: 450px;
+				font-size: 0.9em;
+				
+			}
+			
+				a#odclogo, a#pclogo, a#ntlogo {
+					
+					display: inline-block;
+					position: relative;
+					width: 200px;
+					height: 60px;
+					font-size: 0px;
+					text-indent: -1000px;
+					color: transparent;
+					margin: 0px;
+					padding: 0px;
+					top: -5px;
+					
+				}
+			
+				a#odclogo {
+					background: url(../img/opendatacity.png) center center no-repeat;
+					
+				}
+			
+				a#pclogo {
+					background: url(../img/picocell.png) center center no-repeat;
+					
+				}
+			
+				a#ntlogo {
+					background: url(../img/newthinking.png) center center no-repeat;
+					
+				}
+				
+	#embed-overlay {
+		
+		display: none;
+		position: fixed;
+		left: 0px;
+		right: 0px;
+		top: 0px;
+		bottom: 0px;
+		background-color: rgba(0,0,0,0.7);
+		overflow-y: auto;
+		
+	}
+	
+		#embed-content {
+			
+			display: block;
+			position: relative;
+			width: 640px;
+			background-color: #fff;
+			margin: 20px auto;
+			padding: 20px;
+			border-radius: 6px;
+			box-shadow: 0px 0px 50px -15px rgba(0,0,0,0.9);
+			
+		}
+		
+			#embed-content fieldset {
+				
+				padding-bottom: 20px;
+				
+			}
+
+				#embed-content fieldset legend {
+
+					margin-bottom: 10px;
+					line-height: 30px;
+
+				}
+				
+			
+			#embed-content label+label {
+				
+				margin-left: 20px;
+				
+			}
+		
+			#embed-content code {
+				
+				display: block;
+				position: relative;
+				padding: 10px;
+				white-space: normal;
+				color: #444
+				
+			}
+
+.clear {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
