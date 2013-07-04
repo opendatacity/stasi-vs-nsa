@@ -110,7 +110,7 @@
 			fillOpacity: 0.6
 		}).addTo(map);
 		
-		var labelStasi = new L.Label({offset:[0,5], className:'left', clickable:true});
+		var labelStasi = new L.Label({offset:[0,5], className:'left', clickable:true, noHide:true});
 		labelStasi.setContent('<h3>Fläche der Stasi-Aktenschränke</h3>200 Aktenkilometer entsprechen<br>etwa 48\'000 Aktenschränken,<br>die etwa 0,019 km&sup2; Platz benötigen.');
 		labelStasi.setLatLng([52.520390625, 13.3993489583333]);
 		map.showLabel(labelStasi);
@@ -119,7 +119,7 @@
 			map.setView([52.52, 13.4005], 16);
 		})
 
-		var labelNSA = new L.Label({offset:[0,5], className:'right', clickable:true});
+		var labelNSA = new L.Label({offset:[0,5], className:'right', clickable:true, noHide:true});
 		labelNSA.setContent('<h3>Fläche der NSA-Aktenschränke</h3>5 Zettabytes entsprechen ausgedruckt<br>etwa 42 Billionen Aktenschränken,<br>die etwa 17 Mio. km&sup2; Platz benötigen.<br><br><u>Rauszoomen starten</u>');
 		labelNSA.setLatLng([52.520390625, 13.401]);
 		map.showLabel(labelNSA);
