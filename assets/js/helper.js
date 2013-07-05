@@ -27,7 +27,6 @@ $(document).ready(function(){
 	/* embed code*/
 	if ($('#embed-form').length) {
 		var $f = $('#embed-form');
-		var $url = 'http://apps.opendatacity.de/stasi-vs-nsa/frame.html';
 		var embedCode = function(){
 			var $code = '<iframe src="'+$url+'" width="950" height="580" scrolling="no" frameborder="0" style="margin:0"><a href="'+$url+'">Stasi versus NSA - Wieviel Platz brauchen die Aktenschr&auml;nke?</a></iframe><br>';
 			$code += '<small>Gehe zu <a href="http://apps.opendatacity.de/stasi-vs-nsa/">Stasi versus NSA</a>. ';
