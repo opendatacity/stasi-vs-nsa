@@ -76,16 +76,6 @@
 			zoomAnimation: true
 		}).addTo(map);
 
-/*
-		L.marker([51.5, -0.09]).addTo(map)
-			.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
-
-		L.circle([51.508, -0.11], 500, {
-			color: 'red',
-			fillColor: '#f03',
-			fillOpacity: 0.5
-		}).addTo(map).bindPopup("I am a circle.");
-*/
 		L.polygon([
 			[52.520390625, 13.4006510416667],
 			[52.520390625, 13.3993489583333],
@@ -151,20 +141,7 @@
 			if (map.getZoom() < 16) {
 				labelStasi.setContent('<h3>Fläche der Stasi-Aktenschränke</h3>200 Aktenkilometer entsprechen<br>etwa 48\'000 Aktenschränken,<br>die etwa 0,019 km&sup2; Platz benötigen.<br><br><u>Reinzoomen</u>');
 			}
-		})
-
-		/*
-		var popup = L.popup();
-
-		function onMapClick(e) {
-			popup
-				.setLatLng(e.latlng)
-				.setContent("You clicked the map at " + e.latlng.toString())
-				.openOn(map);
-		}
-
-		map.on('click', onMapClick);
-		*/
+		});
 
 	</script>
 	<script type="text/javascript">
