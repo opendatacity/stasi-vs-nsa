@@ -76,11 +76,24 @@
 			zoomAnimation: true
 		}).addTo(map);
 
+		var polygon1 = {
+			a: {y:52.519609375, x:13.3993489583333},
+			b: {y:52.520390625, x:13.4006510416667},
+			title: '<h3>Fläche der Stasi-Aktenschränke</h3>200 Aktenkilometer entsprechen<br>etwa 48\'000 Aktenschränken,<br>die etwa 0,019 km&sup2; Platz benötigen.'
+		};
+
+		var polygon2 = {
+			a: {y:16.0832066104239, x:13.401},
+			b: {y:52.520390625,     x:58.9474800182201},
+			title: '<h3>Fläche der NSA-Aktenschränke</h3>5 Zettabytes entsprechen ausgedruckt<br>etwa 42 Billionen Aktenschränken,<br>die etwa 17 Mio. km&sup2; Platz benötigen.',
+			title2: '<h3>Fläche der NSA-Aktenschränke</h3>5 Zettabytes entsprechen ausgedruckt<br>etwa 42 Billionen Aktenschränken,<br>die etwa 17 Mio. km&sup2; Platz benötigen.<br><br><u>Rauszoomen starten</u>'
+		};
+
 		L.polygon([
-			[52.520390625, 13.4006510416667],
-			[52.520390625, 13.3993489583333],
-			[52.519609375, 13.3993489583333],
-			[52.519609375, 13.4006510416667]
+			[polygon1.a.y, polygon1.a.x],
+			[polygon1.b.y, polygon1.a.x],
+			[polygon1.b.y, polygon1.b.x],
+			[polygon1.a.y, polygon1.b.x]
 		], {
 			color: '#000',
 			weight: 2,
@@ -89,10 +102,10 @@
 		}).addTo(map);
 
 		L.polygon([
-			[52.520390625, 58.9474800182201],
-			[52.520390625, 13.401],
-			[16.0832066104239, 13.401],
-			[16.0832066104239, 58.9474800182201]
+			[polygon2.a.y, polygon2.a.x],
+			[polygon2.b.y, polygon2.a.x],
+			[polygon2.b.y, polygon2.b.x],
+			[polygon2.a.y, polygon2.b.x]
 		], {
 			color: '#000',
 			weight: 2,
@@ -101,8 +114,8 @@
 		}).addTo(map);
 		
 		var labelStasi = new L.Label({offset:[0,5], className:'left', clickable:true, noHide:true});
-		labelStasi.setContent('<h3>Fläche der Stasi-Aktenschränke</h3>200 Aktenkilometer entsprechen<br>etwa 48\'000 Aktenschränken,<br>die etwa 0,019 km&sup2; Platz benötigen.');
-		labelStasi.setLatLng([52.520390625, 13.3993489583333]);
+		labelStasi.setContent(polygon1.title);
+		labelStasi.setLatLng([polygon1.b.y, polygon1.a.x]);
 		map.showLabel(labelStasi);
 		
 		labelStasi.on('click', function () {
@@ -110,8 +123,8 @@
 		})
 
 		var labelNSA = new L.Label({offset:[0,5], className:'right', clickable:true, noHide:true});
-		labelNSA.setContent('<h3>Fläche der NSA-Aktenschränke</h3>5 Zettabytes entsprechen ausgedruckt<br>etwa 42 Billionen Aktenschränken,<br>die etwa 17 Mio. km&sup2; Platz benötigen.<br><br><u>Rauszoomen starten</u>');
-		labelNSA.setLatLng([52.520390625, 13.401]);
+		labelNSA.setContent(polygon2.title);
+		labelNSA.setLatLng([polygon2.b.y, polygon2.a.x]);
 		map.showLabel(labelNSA);
 
 		var interval = false;
@@ -139,7 +152,7 @@
 
 		map.on('zoomend', function () {
 			if (map.getZoom() < 16) {
-				labelStasi.setContent('<h3>Fläche der Stasi-Aktenschränke</h3>200 Aktenkilometer entsprechen<br>etwa 48\'000 Aktenschränken,<br>die etwa 0,019 km&sup2; Platz benötigen.<br><br><u>Reinzoomen</u>');
+				labelStasi.setContent(polygon2.title2);
 			}
 		});
 
