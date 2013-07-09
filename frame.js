@@ -9,6 +9,8 @@ function init() {
 		polygon1.title  = cleanText(polygon1.title);
 		polygon1.title2 = cleanText(polygon1.title2);
 		polygon2.title  = cleanText(polygon2.title);
+		startCoordinates[0] -= 5e-4;
+		startCoordinates[1] -= (polygon1.b.x-polygon1.a.x)/2;
 	}
 
 	map.setView(startCoordinates, 16)
